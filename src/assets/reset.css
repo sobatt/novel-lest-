@@ -1,0 +1,60 @@
+div,ul,li,ol,body,p,h1,h2,h3,h4,dl,dd,dt,a,img,em,span{
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+}
+ul,ol,li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+  color: #333;
+}
+
+html,body{
+  font-family: 'abcd';
+  color: #333333;
+	font-family: "微软雅黑";
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  /*width: 10rem;*/
+   /*padding-top: constant(safe-area-inset-top);           
+    padding-left: constant(safe-area-inset-left);               
+    padding-right: constant(safe-area-inset-right);             
+    padding-bottom: constant(safe-area-inset-bottom);*/
+}
+
+::-webkit-scrollbar-track-piece{
+    background-color:#FFFFFF;
+    -webkit-border-radius:0;
+}
+::-webkit-scrollbar{
+    width:0.025rem;
+    height:0.025rem;
+}
+::-webkit-scrollbar-thumb{
+    height:50px;
+    background-color:#FFFFFF;
+    -webkit-border-radius:4px;
+    outline:0.025rem solid #fff;
+    outline-offset:-0.025rem;
+    border: 0.025rem solid #fff;
+}
+/*::-webkit-scrollbar-thumb:hover{
+    height:50px;
+    background-color:#FFFFFF;
+    -webkit-border-radius:4px;
+}*/
+img{
+	display: inline-block;
+}
+.clearFix:after{
+	content: "";
+	display: block;
+	clear: both;
+	height: 0;
+	overflow: hidden;
+	zoom: 1;
+}
+
