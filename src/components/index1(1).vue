@@ -1,7 +1,7 @@
 <template>
 	<div id="wrap">
 		<div id="header">
-			<h1>{{detailId}}</h1>
+			<h1>King of the north{{detailId}}</h1>
 		</div>
 		<div id="main-wrap-big">
 			<!--banner-->
@@ -26,7 +26,7 @@
 				<div id="Directory-options-item">Chapter6</div>
 				<div id="Directory-options-item">Chapter7</div>
 				<div id="Directory-options-item">Chapter8</div>-->
-				<div id="Directory-options-item" @click="show">More</div>
+				<div id="Directory-options-item1"  @click="show">More...</div>
 			</div>
 			<!--main-->
 			<div id="main-wrap">
@@ -54,12 +54,12 @@
 					<div id="Extension-face">
 						<div id="Extension-face-left"><img src="../../static/images/facebook.png" /></div>
 						<div id="Extension-face-center"><span>MeeJee Team</span></div>
-						<div id="Extension-face-right"><span>Follow</span></div>
+						<div id="Extension-face-right" @click="followf"><a href="https://m.facebook.com/?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr" target="_blank">Follow</a></div>
 					</div>
 					<div id="Extension-twitter">
 						<div id="Extension-face-left"><img src="../../static/images/facebook.png" /></div>
 						<div id="Extension-face-center1"><span>@MeeJee Team</span></div>
-						<div id="Extension-face-right"><span>Follow</span></div>
+						<div id="Extension-face-right" @click="followt"><span>Follow</span></div>
 					</div>
 				</div>
 				<div id="Extension-bottom">
@@ -71,14 +71,15 @@
 				<div id="Recommend">
 					<div id="Recommend-top">
 						<h2>Maybe you will like:</h2></div>
-					<div id="Recommend-main" v-for="item in bookid" :key="item" :id="item">
-						<!--<div id="Recommend-main-item"><img src="../../static/images/qitatuijian.png"/></div>
+					<!--<div id="Recommend-main" v-for="item in bookid" :key="item" :id="item">-->
+					<div id="Recommend-main">
 						<div id="Recommend-main-item"><img src="../../static/images/qitatuijian.png"/></div>
 						<div id="Recommend-main-item"><img src="../../static/images/qitatuijian.png"/></div>
 						<div id="Recommend-main-item"><img src="../../static/images/qitatuijian.png"/></div>
 						<div id="Recommend-main-item"><img src="../../static/images/qitatuijian.png"/></div>
-						<div id="Recommend-main-item"><img src="../../static/images/qitatuijian.png"/></div>-->
-						<div class="Recommend-main-item" @click="a(item)">{{item}}</div>
+						<div id="Recommend-main-item"><img src="../../static/images/qitatuijian.png"/></div>
+						<div id="Recommend-main-item"><img src="../../static/images/qitatuijian.png"/></div>
+						<!--<div class="Recommend-main-item" @click="a(item)">{{item}}</div>-->
 					</div>
 				</div>
 			</div>
@@ -121,13 +122,13 @@
 				index: 1,
 				page:"",
 				chapterlist:[//模拟数据（后台取得）
-				"chapter1chapter1chapter1",
-				"chapter1chapter1chapter2",
-				"chapter1chapter1chapter3",
-				"chapter1chapter1chapter4",
-				"chapter1chapter1chapter5",
-				"chapter1chapter1chapter6",
-				"chapter1chapter1chapter7"
+				"chapterchapterchapter1",
+				"chapterchapterchapter2",
+				"chapterchapterchapter3",
+				"chapterchapterchapter4",
+				"chapterchapterchapter5",
+				"chapterchapterchapter6",
+				"chapterchapterchapter7"
 				],
 				chapterindex: 1,//章节数
 				chaptercontent: ""//显示内容
@@ -141,14 +142,15 @@
 		created() {
 			this.getBookId();
 			console.log(this.detailId)
-			//	this.$http.post('http://47.94.240.34/chapter/',{book_id:1,chapter_id:1},{emulateJSON:true}
-			//	).then(res => {
-			//this.list = (res.data.data);
-			//	console.log(res);
-			//	},err => {
-//			//alert('wrong');
-			//	console.log('err');		
-			//});
+//				this.$http.post('http://47.94.240.34/chapter/',{book_id:1,chapter_id:1},{emulateJSON:true}
+				this.$http.get('http://47.94.240.34/chapter/',{book_id:1,chapter_id:1},{emulateJSON:true}
+				).then(res => {
+			this.list = (res.data.data);
+				console.log(res);
+				},err => {
+			//alert('wrong');
+				console.log('err');		
+			});
 			//模拟接口取数据，这里直接赋值
 			//this.pages();
 			this.chaptercontent = this.chapterlist[0];
@@ -199,35 +201,48 @@
 					this.flag = false;
 				}
 			},
+			//email 
 			face() {
 				let reg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/;
 				let mail = document.getElementById('text').value;
-
-				console.log(this.faceid);
-				
+//				console.log(this.faceid);	
 				if(reg.test(mail)) {
 //					alert('ok');
-					console.log(this.detailId);
-					this.$http({
-					method:'post',
-					url:'http://47.94.240.34/subscibe/',
-					params:{
-					type:'facebook',
-					book_id: 1,
-					chapter_id: 1
-						}
-					}).then(res=>{
-						console.log(res)
-					}),err =>{
-						console.log('asd')
+					console.log(mail)
+					this.$http.post('http://47.94.240.34/subscibe/',{book_id:this.detailId,chapter_id:1,email:mail,type:'facebook'},{emulateJSON:true}
+				    ).then(res => {
+					console.log(res);
+					},err => {
+				//alert('wrong');
+					console.log('err');		
+					});
+					} else {
+						return;
 					}
-				} else {
-					return;
-				}
-				if(mail == '') {
-					return;
-//					alert('不能为空');
-				}
+					if(mail == '') {
+						return;
+					}
+			},
+			//facebook follow
+			followf() {
+					console.log(this.detailId);				
+					this.$http.post('http://47.94.240.34/follow/',{book_id:this.detailId,chapter_id:1,type:'facebook'},{emulateJSON:true}
+				    ).then(res => {
+					console.log(res);
+					},err => {
+				//alert('wrong');
+					console.log('err');		
+					});
+			},
+			//twitter follow
+			followt()　{
+					this.$http.post('http://47.94.240.34/follow/',{book_id:this.detailId,chapter_id:1,type:'twitter'},{emulateJSON:true}
+				    ).then(res => {
+					console.log(res);
+					},err => {
+				//alert('wrong');
+					console.log('err');		
+					});				
 			},
 			a(item) {
 //				let i = item;
@@ -320,6 +335,20 @@
 		background-size: 2.3rem 0.777777rem;
 		color: rgba(54, 33, 157, 0.3);
 
+	}
+	#Directory-options-item1{
+		background: #FFFFFF;
+		width: 2.3rem;
+		height: 0.777777rem;
+		line-height: 0.777777rem;
+		background: white;
+		float: left;
+		margin-left: 0.346666rem;
+		margin-top: 0.416666rem;
+		border-radius: 0.055555rem;
+		text-align: center;
+		font-size: 0.377777rem;
+		color: #36219d;
 	}
 	#Directory-options-item.active{
 		background: url(../../static/images/tangchuangxuanze.png);
@@ -473,7 +502,9 @@
 		text-align: center;
 		margin-right: 0.4rem;
 	}
-	
+	#Extension-face-right a{
+		color: #FFFFFF;
+	}
 	#Extension-twitter {
 		width: 10rem;
 		height: 1.6rem;
@@ -539,24 +570,23 @@
 		width: 10rem;
 		height: 2.666666rem;
 		margin-top: 0.426666rem;
-		overflow-x: scroll;
-		overflow-y: scroll;
+		overflow: overlay;
+		/*overflow-y: none;*/
 		display: flex;
 	}
 	
-	.Recommend-main-item:nth-of-type(1) {
+	#Recommend-main-item:nth-of-type(1) {
 		margin-left: 0;
 	}
 	
-	.Recommend-main-item {
+	#Recommend-main-item {
 		width: 4rem;
 		height: 2.666666rem;
 		/*float: left;*/
 		justify-content: space-around;
 		margin-left: 0.2rem;
 	}
-	
-	.Recommend-main-item img {
+	#Recommend-main-item img {
 		width: 4rem;
 		height: 2.666666rem;
 	}
