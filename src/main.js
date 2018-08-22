@@ -4,21 +4,25 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
 Vue.http.options.emulateJSON = true;
 
+import VueAwesomeSwiper from 'vue-awesome-swiper';
+Vue.use(VueAwesomeSwiper);
+
 
 import "./assets/reset.css"
+import "./assets/swiper.css"
 import "./assets/flexible.js"
+import "./assets/marked.js"
 
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
+    el: '#app',
+    router,
+    components: { App },
+    template: '<App/>'
 })

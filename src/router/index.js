@@ -1,23 +1,54 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/i22'
-import Novel from '@/components/novel'
-import Novel2 from '@/components/novel2'
+import AGuestinaGhostHouse from '@/components/AGuestinaGhostHouse'
+import CardMaker from '@/components/CardMaker'
+import TheTaoistCareer from '@/components/TheTaoistcareer'
+import PsychicTattoo from '@/components/PsychicTattoo'
+import TheTaleoftheGhostEyes from '@/components/TheTaleoftheGhostEyes'
+import MyNightclubLandlady from '@/components/MyNightclubLandlady'
+import ReturnoftheSoldierKing from '@/components/ReturnoftheSoldierKing'
+import a from '@/components/a'
+import index from '@/components/index'
+import slider from '@/components/slider'
+
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },{
-    	path: '/novel',
-    	component: Novel
-    },{
-    	path: '/novel2',
-    	component: Novel2    	
-    }
-  ]
+    routes: [{
+            path: '/',
+            name: 'ReturnoftheSoldierKing',
+            component: ReturnoftheSoldierKing
+        },
+        {
+            path: '/AGuestinaGhostHouse',
+            name: 'AGuestinaGhostHouse',
+            component: AGuestinaGhostHouse
+        },
+        {
+            path: '/CardMaker',
+            name: 'CardMaker',
+            component: CardMaker
+        },
+        {
+            path: '/TheTaoistcareer',
+            component: TheTaoistCareer
+        },
+        {
+            path: '/PsychicTattoo',
+            component: PsychicTattoo
+        },
+        {
+            path: '/TheTaleoftheGhostEyes',
+            component: TheTaleoftheGhostEyes
+        },
+        {
+            path: '/MyNightclubLandlady',
+            component: MyNightclubLandlady
+        },
+        {
+            path: '/ReturnoftheSoldierKing',
+            component: ReturnoftheSoldierKing
+        }
+    ]
 })
